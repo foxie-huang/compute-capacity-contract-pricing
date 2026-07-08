@@ -1,0 +1,13 @@
+issuer,lambda_term_per_yr,R_bk,omega_g,beta_life,rho_tier,credit_anchor
+AWS / GCP / Azure,0.01,0.35,0.01,0.002,0.0,AAA/AA hyperscaler-parent benchmark (agency ratings)
+Oracle,0.03,0.35,0.04,0.007,0.0,investment-grade spread (FINRA TRACE)
+Hut 8 (River Bend),0.003,0.55,0.016,0.003,0.0,ring-fenced non-recourse project notes (investment-grade special case)
+Galaxy (Helios),0.08,0.60,0.0,0.0,0.0,comparable-implied (unrated); Helios leased to CoreWeave
+Core Scientific,0.10,0.55,0.0,0.0,-0.20,post-reorganization traded spread (FINRA TRACE); secured
+Applied Digital,0.07,0.55,0.04,0.007,-0.20,traded spread (FINRA TRACE); secured
+TeraWulf,0.08,0.55,0.0,0.0,-0.20,traded spread (FINRA TRACE); secured
+Cipher,0.07,0.55,0.0,0.0,-0.20,traded spread (FINRA TRACE); secured
+CoreWeave,0.07,0.35,0.25,0.043,-0.40,Fitch BB-/RR4; 9.25% 2030 senior unsecured Z-spread ~454bp
+Nebius,0.06,0.35,0.14,0.024,-0.40,Merton/equity-implied (unrated)
+Lambda,0.12,0.55,0.40,0.068,-0.40,comparable-implied (private); secured
+IREN,0.10,0.35,0.15,0.026,-0.40,Merton/equity-implied (unrated); omega per SEC filings Mar-2026

@@ -1,0 +1,22 @@
+name,value,unit,kind,source
+P0_spot_anchor,2.58,USD/hr,input,Silicon Data H100 marketplace median 2024 H2
+eta_life_M,0.23,per yr,input,supply-free performance-per-watt frontier clock (NVIDIA H100/B200 datasheets; Epoch AI 2024)
+eta_life_C,0.20,per yr,input,performance-per-watt clock damped toward resale floor
+eta_life_O,0.125,per yr,input,used-hardware resale residual (decelerating to salvage floor)
+Tbar_M_to_C,2.5,yr,input,roadmap-anchored M->C transition (30 months)
+sigma_M_to_C,0.5,yr,input,transition jitter (6 months)
+Tbar_C_to_O,2.0,yr,input,roadmap-anchored C->O transition
+sigma_C_to_O,0.5,yr,input,transition jitter
+H_C,0.575,log-units,derived,accrued mid-life drift eta_M * Tbar_MC
+H_O,0.975,log-units,derived,cumulative descent to the salvage floor (paper eq. D-def)
+V_prepaid_face,2.58,USD/hr,input,contract purchase price (reference spot at inception)
+L_op,0.04,USD/hr,input,operational leg on the AWS EC2 SLA credit schedule
+sigma_P,0.35,per sqrt(yr),input,realized weekly rental log-volatility (weekly to avoid zero-inflation of stale daily prints)
+tenor,2.0,yr,input,Q4-2024 -> Q4-2026 worked delivery
+G_commodity_24mo,1.63,USD/hr,output/gate,commodity branch G^g at 24 months (clock_curve.py gate)
+F_CoreWeave_24mo,1.51,USD/hr,output/gate,credit-adjusted base case (cohort_pipeline.py V0 gate row)
+c_g_expected_scale,0.17,per yr per log-unit,input,grade-level expected-erosion scale (pure-play ceiling beta = c_g * omega)
+c_prime_g_surprise,0.148,per yr per log-unit,calibrated,surprise-erosion scale (calibrate_gamma.py; 0.148 +/- 0.021)
+kappa_supply,0.7,per yr,input,supply-factor mean reversion (paper App. A)
+persistence_1y,0.85,share,input,B.2 effective 1-year persistence of rental shocks
+R_a_assume,0.95,share,input,executory assumption recovery on delivered value (Section 365 refinement)
