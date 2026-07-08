@@ -3,8 +3,9 @@
 Replication code for:
 
 > **Cao, Z. and Huang, S. (2026). "A Defaultable-Commodity Framework for Compute
-> Capacity Contracts."** Working paper; extended-version links (SSRN/arXiv) to be
-> added on posting.
+> Capacity Contracts."** Working paper, available at
+> [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6961087); arXiv link to
+> be added on posting.
 
 The papers price bilateral compute-capacity contracts as defaultable claims on a
 non-storable commodity forward, with one hardware-obsolescence lifecycle driving both
