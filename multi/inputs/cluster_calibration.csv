@@ -1,0 +1,16 @@
+name,value,unit,kind,source
+n_0,0.64,ratio,input,cascade branching ratio; structural prior disciplined by a one-sided spread check [struct/data hybrid]
+n_S,0.53,ratio,input,structural branching from the exposure-network knock-on count; band 0.40-0.67 carry 0.67 [data]
+kappa_fc,2.0,per yr,input,cascade decay; refinancing cadence half-life ~4 months [struct]
+R_0,0.40,recovery,input,no-cascade recovery level
+R_tip,0.10,recovery,input,stranded single-architecture fleet fire-sale floor
+S_cluster,0.69,survival,input,AI-sector-concentrated cluster five-year survival
+lambda_0,0.03,per yr,input,illustrative idiosyncratic baseline hazard [illus]
+delta_fc_keystone,0.90,probability,input,keystone per-firing default weight in the 2025-26 loop
+h_perp,0.50,Sharpe,input,good-deal residual budget; terminal over the horizon not annualised [struct]
+mu_idio,0.10,per yr,input,2022 cohort idiosyncratic intensity; lowest speculative-grade range
+nu_fc_cohort,1.18,per yr,derived,2022 cohort cluster intensity back-solved from the realised 2-of-4 outcome
+delta_compute_north,0.85,probability,input,mining-host pure-play; no energy-cost pass-through
+delta_core_scientific,0.80,probability,input,predominantly self-mining; no non-mining line in 2022
+delta_hut8,0.45,probability,input,mining-dominant but HPC/colocation diversified
+delta_applied_digital,0.30,probability,input,crypto hosting pivoting to HPC/AI

@@ -1,0 +1,15 @@
+name,value,unit,kind,source
+s_c_0,1.00,share,input,merchant frontier training builds on the incumbent stack mid-2026 [data]
+tau_par,6.0,yr,input,moat-closure horizon beyond hardware parity; band 4-8 [struct]
+gamma,0.50,per yr,input,lock-in strength; basin relaxation ~1/gamma [struct]
+m_dot,0.04,per yr^2,input,merit drift; perf-per-watt catch-up plus porting-cost decline [struct]
+sigma_m,0.15,per yr^1.5,input,merit volatility; perf-per-watt generational dispersion [struct]
+m_0,0.24,per yr,derived,m_dot * tau_par; saddle-node distance m_0+gamma = 0.74
+kappa_cap,0.06,per yr,derived,c_pkg * delta_dep; post-tip migration limit
+c_pkg,0.20,share,input,challenger share of new frontier-training-capable supply; packaging-constrained [struct]
+delta_dep,0.30,per yr,input,fleet refresh; damped middle of [0.17 0.50] bracket [struct]
+s_bar_0,0.75,share,input,overall accelerator revenue share 2026E; anchors 0.87 (2024) 0.81 (2025) [data provisional]
+S_bar_0,0.85,share,input,value-weighted installed-base share; collateral and buffer variable [struct]
+k_o,1.64,per yr,derived,overall coexistence relaxation rate fitted to the three anchors
+s_bar_star,0.57,share,derived,overall relaxation limit; fragile to +/-0.005 on the middle anchor
+q,1.00,exponent,input,buffer-share elasticity; illustrative [illus]
