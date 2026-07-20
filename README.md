@@ -81,5 +81,6 @@ its scripts will live in `multi/` with their own copies of the shared input scal
 
 ## License
 
-MIT (see [LICENSE](LICENSE)). Input facts are public data quoted with citation; see the
-papers' data-availability notes.
+Apache License 2.0 (see [LICENSE](LICENSE); attribution in [NOTICE](NOTICE)). Input facts
+are public data quoted with citation; see the papers' data-availability notes. No licensed
+or proprietary series is redistributed here.
