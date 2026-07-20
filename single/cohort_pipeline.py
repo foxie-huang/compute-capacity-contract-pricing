@@ -170,7 +170,7 @@ for nm, om, Gam in (("CoreWeave",0.25,-0.0093),("Nebius",0.14,-0.0059),("Lambda"
     sigL = Gam/(-0.40*sigP*np.sqrt(T)); resid = (Gam-Gs)/(sigL*sigP*np.sqrt(T))
     print(f"   {nm:10s} γ={g:.3f}  Γ_struct={Gs:+.4f}  ϱ_resid={resid:+.2f}")
 
-# ---------------- H: recovery-moneyness delta in the hedge ratio (referee fix 1) ----------------
+# ---------------- H: recovery-moneyness delta in the hedge ratio ----------------
 # Under eq:recovery-moneyness the recovery leg has a DIRECT spot delta (digital shifts weight to
 # the reject leg as spot rises; the in-kind value rises with it). Central-difference bump of the
 # log-spot at FIXED strike K; compare to the delivery-term delta S*G*e^{-Gamma} (per unit ln P).
