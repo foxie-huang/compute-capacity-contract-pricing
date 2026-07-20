@@ -31,10 +31,10 @@ IG(mean 18.5y, shape 24) in sec:bifurcation.  Buyer record 2025-26: five gigawat
 commitments over ~1.5y => nu_buy = 3/yr, marks resampled from the observed {6,10,5,5} GW.
 Contestable merchant pool = OpenAI's 10 GW NVIDIA + 16 GW non-NVIDIA = 26 GW (sec:circular).
 
-THE KEY PARAMETER is phi, the TRAINING-scoped fraction of a commitment.  The paper's own
+THE KEY PARAMETER is c_tr, the TRAINING-scoped fraction of a commitment.  The paper's own
 read (sec:circular, app:calibration) is that the record is "inference-scoped to date", i.e.
-phi ~ 0, so it moves the overall mix rather than the contestable training basin.  phi is
-swept here to find what it would take to matter.  Share jump  Delta = phi * GW / 26.
+c_tr ~ 0, so it moves the overall mix rather than the contestable training basin.  c_tr is
+swept here to find what it would take to matter.  Share jump  Delta = c_tr * GW / 26.
 
 Deterministic: fixed seeds.
 """
@@ -55,7 +55,7 @@ NPATH = 100_000
 TENORS = [1, 2, 3, 4, 5]
 
 
-def tip_probs(phi, nu=NU_BUY, npath=NPATH, seed=0):
+def tip_probs(c_tr, nu=NU_BUY, npath=NPATH, seed=0):
     """P(tip <= T) at each tenor, plus the mean pre-tip share at T_MAX (the mechanism)."""
     rng = np.random.default_rng(seed)
     nstep = int(round(T_MAX / DT))
@@ -70,11 +70,11 @@ def tip_probs(phi, nu=NU_BUY, npath=NPATH, seed=0):
         live = np.isinf(tipped_at)
         # replicator drift back toward the vertex (deterministic given m)
         s[live] += s[live] * (1 - s[live]) * (2 * GAMMA * s[live] - GAMMA + m[live]) * DT
-        if phi > 0:
+        if c_tr > 0:
             hit = live & (rng.random(npath) < p_jump)
             if hit.any():
                 gw = rng.choice(MARKS_GW, hit.sum())
-                s[hit] -= phi * gw / POOL_GW
+                s[hit] -= c_tr * gw / POOL_GW
         s_dag = (GAMMA - m) / (2 * GAMMA)
         crossed = live & (s <= s_dag)
         tipped_at[crossed] = t
@@ -82,9 +82,9 @@ def tip_probs(phi, nu=NU_BUY, npath=NPATH, seed=0):
     return [np.mean(tipped_at <= T) for T in TENORS], s[surv].mean()
 
 
-def realloc_rate(phi, nu=NU_BUY):
+def realloc_rate(c_tr, nu=NU_BUY):
     """Annual contestable-training share reallocation, in share points per year."""
-    return nu * phi * MARKS_GW.mean() / POOL_GW * 100
+    return nu * c_tr * MARKS_GW.mean() / POOL_GW * 100
 
 
 # ------------------------------------------------------------------ validation
@@ -103,24 +103,24 @@ for T, c, s_ in zip(TENORS, closed, sim0):
 print(f"\nfive-year tip probability with compound-Poisson buyer commitments"
       f"   [nu_buy = {NU_BUY}/yr, marks {MARKS_GW} GW, pool {POOL_GW:.0f} GW, "
       f"{NPATH:,} paths]")
-print(f"{'phi':>6} {'pp/yr':>7} " +
+print(f"{'c_tr':>6} {'pp/yr':>7} " +
       " ".join(f"{'T='+str(T):>8}" for T in TENORS) + f" {'mean s|no tip':>14}")
-for j, phi in enumerate([0.0, 0.05, 0.10, 0.25, 0.50, 1.00]):
-    pr, sbar = tip_probs(phi, seed=10 + j)
-    print(f"{phi:6.2f} {realloc_rate(phi):6.1f}  " +
+for j, c_tr in enumerate([0.0, 0.05, 0.10, 0.25, 0.50, 1.00]):
+    pr, sbar = tip_probs(c_tr, seed=10 + j)
+    print(f"{c_tr:6.2f} {realloc_rate(c_tr):6.1f}  " +
           " ".join(f"{p*100:7.2f}%" for p in pr) + f" {sbar:13.3f}")
 
-# is the (nu, phi) split sufficient, or only their product?  same reallocation rate,
+# is the (nu, c_tr) split sufficient, or only their product?  same reallocation rate,
 # different granularity: many small commitments vs few large ones.
-print(f"\nis only the PRODUCT nu*phi identified?  matched reallocation rate {realloc_rate(0.10):.1f} pp/yr")
-print(f"{'nu':>6} {'phi':>6} {'pp/yr':>7} " + " ".join(f"{'T='+str(T):>8}" for T in TENORS))
-for j, (nu, phi) in enumerate([(1.0, 0.30), (3.0, 0.10), (9.0, 0.0333)]):
-    pr, _ = tip_probs(phi, nu=nu, seed=40 + j)
-    print(f"{nu:6.1f} {phi:6.3f} {realloc_rate(phi, nu):6.1f}  " +
+print(f"\nis only the PRODUCT nu*c_tr identified?  matched reallocation rate {realloc_rate(0.10):.1f} pp/yr")
+print(f"{'nu':>6} {'c_tr':>6} {'pp/yr':>7} " + " ".join(f"{'T='+str(T):>8}" for T in TENORS))
+for j, (nu, c_tr) in enumerate([(1.0, 0.30), (3.0, 0.10), (9.0, 0.0333)]):
+    pr, _ = tip_probs(c_tr, nu=nu, seed=40 + j)
+    print(f"{nu:6.1f} {c_tr:6.3f} {realloc_rate(c_tr, nu):6.1f}  " +
           " ".join(f"{p*100:7.2f}%" for p in pr))
 
-print(f"\nreading: phi is the fraction of a committed gigawatt that lands in the")
-print("CONTESTABLE TRAINING basin.  phi = 0 is the paper's read of the record as")
+print(f"\nreading: c_tr is the fraction of a committed gigawatt that lands in the")
+print("CONTESTABLE TRAINING basin.  c_tr = 0 is the paper's read of the record as")
 print("inference-scoped, and reproduces the unchanged IG law.  The column to watch is")
 print("T = 5, against the paper's 8.9%.")
 print("\nMECHANISM: read the last column.  Jumps do not tip the market directly -- a single")

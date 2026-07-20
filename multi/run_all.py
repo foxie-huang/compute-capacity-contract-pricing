@@ -52,8 +52,8 @@ def gate_buyer_jump(o):
     base = grab(r"^\s*0\.00\s+[\d.]+\s+(?:[\d.]+%\s+){4}([\d.]+)%", o)
     lift = grab(r"^\s*0\.05\s+[\d.]+\s+(?:[\d.]+%\s+){4}([\d.]+)%", o)
     return [
-        (near(base, 8.85, 0.5), f"five-year tip at phi=0 is {base}% (paper 8.9%)"),
-        (near(lift, 15.46, 0.8), f"five-year tip at phi=0.05 is {lift}% (paper 15.5%)"),
+        (near(base, 8.85, 0.5), f"five-year tip at c_tr=0 is {base}% (paper 8.9%)"),
+        (near(lift, 15.46, 0.8), f"five-year tip at c_tr=0.05 is {lift}% (paper 15.5%)"),
     ]
 
 
