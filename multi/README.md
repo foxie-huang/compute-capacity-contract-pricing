@@ -1,7 +1,8 @@
 # Multi-issuer compute-capacity contract pricing — replication code
 
 Replication code for the multi-issuer working paper: *Pricing Portfolios of Compute
-Capacity Contracts — Cross-Issuer Dependence and Segment Classification*.
+Capacity Contracts — Cross-Issuer Dependence and Segment Classification*, Cao, Z. and
+Huang, S. (2026). Preprint: [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7005619).
 
 The paper prices a portfolio of compute-capacity contracts whose dominant risk does not
 diversify — a shared trigger that defaults a tied group of issuers at once — and bounds

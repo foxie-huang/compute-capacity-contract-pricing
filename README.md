@@ -20,7 +20,7 @@ This is a monorepo: one folder per paper.
 | Folder | Paper | Preprint |
 |---|---|---|
 | [`single/`](single/) | Cao, Z. and Huang, S. (2026). "A Defaultable-Commodity Framework for Compute Capacity Contracts." | [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6961087) |
-| [`multi/`](multi/) | Cao, Z. and Huang, S. (2026). "Pricing Portfolios of Compute Capacity Contracts: Cross-Issuer Dependence and Segment Classification." | link to be added on posting |
+| [`multi/`](multi/) | Cao, Z. and Huang, S. (2026). "Pricing Portfolios of Compute Capacity Contracts: Cross-Issuer Dependence and Segment Classification." | [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7005619) |
 
 The multi-issuer paper builds on the single-issuer one, but the code does not: each folder
 carries its own inputs and there are no cross-folder imports.
