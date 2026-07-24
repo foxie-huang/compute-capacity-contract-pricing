@@ -1,6 +1,9 @@
 name,value,unit,kind,source
 P0_spot_anchor,2.58,USD/hr,input,Silicon Data H100 marketplace median 2024 H2
-eta_life_M,0.23,per yr,input,supply-free performance-per-watt frontier clock (NVIDIA H100/B200 datasheets; Epoch AI 2024)
+eta_life_M,0.23,per yr,input,supply-free performance-per-watt frontier clock (NVIDIA H100/B200 datasheets; Epoch AI 2024); denominator = the binding constraint (power) - a declared basis; see the mu_F_basis_* rows
+mu_F_basis_flop_per_watt,0.22,per yr,reference,frontier clock on the FLOP-per-watt basis - the reading used throughout; power is the binding data-center constraint and the series is datasheet-verifiable
+mu_F_basis_bandwidth_per_watt,0.13,per yr,reference,same frontier on a bandwidth-per-watt basis - lower bracket where memory bandwidth rather than FLOPs binds
+mu_F_basis_raw_bandwidth,0.29,per yr,reference,same frontier on a raw-bandwidth basis - upper bracket; basis risk on the clock spans 0.13 to 0.29 per yr
 eta_life_C,0.20,per yr,input,performance-per-watt clock damped toward resale floor
 eta_life_O,0.125,per yr,input,used-hardware resale residual (decelerating to salvage floor)
 Tbar_M_to_C,2.5,yr,input,roadmap-anchored M->C transition (30 months)

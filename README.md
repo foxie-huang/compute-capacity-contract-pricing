@@ -64,6 +64,21 @@ Epoch AI performance-per-watt series, marketplace medians as cited). Rental-inde
 quote cited point readings only, and users needing the series should obtain them from
 the source.
 
+Two scope notes, both stated in the single-issuer paper and repeated here because they
+bound what these scripts mean:
+
+- **Settlement.** Everything assumes physical settlement against a prepaid face: the
+  holder pays `V` at inception and takes delivery over the tenor. That is what makes the
+  operational leg and the recovery-of-face-value convention well posed. Cash settlement
+  against a published index leaves the commodity branch intact but replaces the prepaid
+  trade claim with a netted mark-to-market exposure; it is not treated.
+- **Clock basis.** The frontier clock is performance per *binding constraint*, and the
+  numerator–denominator pair is a declared choice rather than a hardware property. We
+  report the FLOP-per-watt reading (power being the binding data-center constraint);
+  the `mu_F_basis_*` rows in `commodity_anchors.csv` carry the sensitivity, `[0.13, 0.29]`
+  across metric choices. Those rows are `reference` kind — documentation of basis risk,
+  not inputs to any gate.
+
 ## Layout
 
 ```
